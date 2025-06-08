@@ -24,10 +24,6 @@ class SuperconductorServiceProvider extends ServiceProvider
     {
         $this->publishConfigs();
         $this->bootManagers();
-
-        Relation::enforceMorphMap([
-            //'initialize'  => InitializeMethod::class,
-        ]);
     }
 
     protected function bootManagers(): void
@@ -44,7 +40,9 @@ class SuperconductorServiceProvider extends ServiceProvider
 
     protected function publishConfigs() : void
     {
-        $this->publishes($this->config, 'mcp');
+        $this->publishes([
+            $this->config['mcp'] => config_path('mcp.php'),
+        ], 'mcp');
     }
 
     protected function registerConfigs() : void

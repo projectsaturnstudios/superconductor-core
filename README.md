@@ -163,7 +163,7 @@ Install the package via Composer:
 composer require projectsaturnstudios/superconductor-core
 ```
 
-Publish the configuration file: (Incomplete - for now copy and paste)
+Publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag=mcp 
