@@ -14,10 +14,10 @@ class SessionGenerator
     {
         /** @var AbstractMCPSession $session */
         $session = SessionManager::createOrLoad($session_id);
+        request()->merge(['session_id' => $session->session_id]);
         if($user = auth(mcp_auth_guard())->user())
         {
             $session = $session->withUser($user->getKey());
-            request()->merge(['session_id' => $session->session_id]);
         }
 
         if(array_key_exists('params', $req = request()->all()))
