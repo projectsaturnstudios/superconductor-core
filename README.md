@@ -1,10 +1,9 @@
 # Superconductor Core
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/projectsaturnstudios/superconductor-core.svg?style=flat-square)](https://packagist.org/packages/projectsaturnstudios/superconductor-core)
-[![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/projectsaturnstudios/superconductor-core/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/projectsaturnstudios/superconductor-core/actions)
 [![Total Downloads](https://img.shields.io/packagist/dt/projectsaturnstudios/superconductor-core.svg?style=flat-square)](https://packagist.org/packages/projectsaturnstudios/superconductor-core)
 
-**Transform any Laravel 11+ application into a powerful Model Context Protocol (MCP) server with elegant Laravel patterns.**
+**Transform any Laravel 12+ application into a powerful Model Context Protocol (MCP) server with elegant Laravel patterns.**
 
 ---
 
@@ -141,9 +140,9 @@ Here's what's coming next to make Superconductor even more powerful:
 - **Capability Metadata** - Rich annotations and documentation
 
 ### Additional Transports 🔌
-- **STDIO Transport** - For local development and CLI integration
-- **WebSocket Transport** - Real-time bidirectional communication
-- **Custom Transport API** - Easy integration of new transport protocols
+- **STDIO Transport** - For local development and CLI integration (Not Ready Yet)
+- **StreamableHttp Transport** - For Local & Remote HTTP-based communication (Ready!)
+
 
 Stay tuned! We're constantly working on making Superconductor the most versatile MCP framework for Laravel.
 
@@ -164,10 +163,10 @@ Install the package via Composer:
 composer require projectsaturnstudios/superconductor-core
 ```
 
-Publish the configuration file:
+Publish the configuration file: (Incomplete - for now copy and paste)
 
 ```bash
-php artisan vendor:publish --tag=mcp
+php artisan vendor:publish --tag=mcp 
 ```
 
 The package will automatically register its service providers and you're ready to go!
@@ -206,17 +205,17 @@ return [
                 'available' => [
                     'hardcoded' => [
                         'tools' => [
-                                                        'echo' => \Superconductor\Capabilities\Tools\EchoTool::class,
+                            'echo' => \Superconductor\Capabilities\Tools\EchoTool::class,
                             'list_commands' => \Superconductor\Capabilities\Tools\ListCommandsTool::class,
-                            // Add your custom tools here
+                            // Remove the above tools and Add your custom tools here
                         ],
                         'resources' => [
                             'mcp://protocol-docs.txt' => \Superconductor\Capabilities\Resources\MCPProtocolDocsResource::class,
-                            // Add your custom resources here
+                            // Remove the above resources Add your custom resources here
                         ],
                         'prompts' => [
                             'some-vague-prompt' => \Superconductor\Capabilities\Prompts\SomeVaguePrompt::class,
-                            // Add your custom prompts here
+                            // Remove the above prompts Add your custom prompts here
                         ],
                     ],
                 ],
@@ -726,17 +725,16 @@ Superconductor Core is designed to be **transport-agnostic**. The core logic wor
 
 ### Available Transports
 
-| Transport | Package | Status | Description |
-|-----------|---------|---------|-------------|
-| **Streamable HTTP** | `superconductor-streamable-http` | ✅ Available | HTTP POST + optional SSE |
-| **STDIO** | `superconductor-stdio` | 🚧 Coming Soon | Standard input/output |
-| **WebSocket** | `superconductor-websocket` | 📅 Planned | Real-time bidirectional |
+| Transport | Package | Status | Description                               |
+|-----------|---------|---------|-------------------------------------------|
+| **Streamable HTTP** | `superconductor-streamable-http` | ✅ Available | HTTP POST + optional SSE (SSE incomplete) |
+| **STDIO** | `superconductor-stdio` | 🚧 Coming Soon | Standard input/output                     |
 
 ### Installing a Transport
 
 ```bash
 # Install HTTP transport
-composer require projectsaturnstudios/superconductor-streamable-http
+composer require superconductor-mcp/streamable-http
 ```
 
 Transport packages integrate automatically with Superconductor Core through the middleware pipeline and method registration system.
@@ -812,7 +810,7 @@ The MIT License (MIT). Please see [License File](LICENSE.md) for more informatio
 
 ```bash
 composer require projectsaturnstudios/superconductor-core
-composer require projectsaturnstudios/superconductor-streamable-http
+composer require superconductor-mcp/streamable-http
 ```
 
 *Your Laravel application is now AI-ready! 🚀* 
