@@ -1,5 +1,6 @@
 # Superconductor Core
 
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/projectsaturnstudios/superconductor-core.svg?style=flat-square)](https://packagist.org/packages/projectsaturnstudios/superconductor-core)
 [![Total Downloads](https://img.shields.io/packagist/dt/projectsaturnstudios/superconductor-core.svg?style=flat-square)](https://packagist.org/packages/projectsaturnstudios/superconductor-core)
 
@@ -10,6 +11,8 @@
 Each GitHub ⭐️ helps the community grow. Thanks for the support!
 
 ---
+
+**NOTE! AI wrote this documentation, it's mostly solid and factual, but a human generated README will be available soon!**
 
 ## Table of Contents
 

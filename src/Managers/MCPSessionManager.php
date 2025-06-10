@@ -11,6 +11,18 @@ use Superconductor\Drivers\Sessions\DatabaseSessionDriver;
 
 class MCPSessionManager extends Manager
 {
+    public function save(AbstractMCPSession $session, ?string $driver = null): AbstractMCPSession
+    {
+        $driver = $driver ?? $this->getDefaultDriver();
+        return $this->driver($driver)->save($session);
+    }
+
+    public function load(string|int $session_id, ?string $driver = null): ?AbstractMCPSession
+    {
+        $driver = $driver ?? $this->getDefaultDriver();
+        return $this->driver($driver)->load($session_id);
+    }
+
     public function createOrLoad(?string $session_id = null, ?string $driver = null): AbstractMCPSession
     {
         $driver = $driver ?? $this->getDefaultDriver();

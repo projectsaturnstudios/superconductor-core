@@ -2,10 +2,9 @@
 
 namespace Superconductor\Capabilities\Tools;
 
-use stdClass;
+use Superconductor\Support\Attributes\ToolCall;
 use Superconductor\Schema\Definitions\V20241105\Tools\CallToolRequest as V20241105CallToolRequest;
 use Superconductor\Schema\Definitions\V20250326\Tools\CallToolRequest as V20250326CallToolRequest;
-use Superconductor\Support\Attributes\ToolCall;
 
 #[ToolCall(
     tool: 'echo',
