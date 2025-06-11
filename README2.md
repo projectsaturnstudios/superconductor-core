@@ -25,3 +25,24 @@ Superconductor is a novel, elegant, transport-layer-agnostic microframework for 
 Couple this package with a compatible Agent-generator and you have a tool-management setup for Agents!
 The modular nature of this package enables developer to support any transport protocols they wish and none that they 
 don't!
+
+
+# Tools
+Tool usage is easy to manager with superconductor. 
+The default management driver is the config driver, meaning you simply
+register your tools in the mcp config - in 
+features -> capabilities -> registrar - available ->hardcoded -> tools.
+
+Tools can be dispatched without a Session being active, simply supply a 
+ToolCallRequest of any compatible MCP version and dispatch with
+```php
+MCPCapabilities::dispatch('tools', $incoming_message);
+```
+
+This system-agnostic dispatching mechanism means, not only can agents connected
+via MCP can use the tools, they can be provided to Agent dispatched directly as well.
+
+To create a tool run: 
+```shell
+php artisan make:tool <name>
+```
