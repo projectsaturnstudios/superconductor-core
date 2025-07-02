@@ -1,21 +1,10 @@
 <?php
 
-namespace Superconductor\Providers;
+namespace MCP\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use JSONRPC\Support\Facades\RPCRouter;
-use Superconductor\Drivers\Transports\TransportProtocolDriver;
-use Superconductor\Managers\Sessions\StatefulSessionManager;
-use Superconductor\Managers\Transports\TransportProtocolManager;
-use Superconductor\Mcp\Controllers\Server\Tools\EchoTool;
-use Superconductor\Mcp\Controllers\Server\Tools\ListCommandsTool;
-use Superconductor\MCPServer;
-use Superconductor\ModelContext;
-use Superconductor\Routing\MCPServerNavigator;
-use Superconductor\Rpc\Controllers\NotificationsController;
-use Superconductor\Rpc\Controllers\SessionInitializationController;
-use Superconductor\Rpc\Controllers\ToolsController;
-use Superconductor\Support\Facades\McpRouter;
+use MCP\ModelContextProtocol;
+
 
 class SuperconductorServiceProvider extends ServiceProvider
 {
@@ -24,14 +13,11 @@ class SuperconductorServiceProvider extends ServiceProvider
     ];
 
     protected array $rpc_controllers = [
-        ToolsController::class,
-        NotificationsController::class,
-        SessionInitializationController::class,
+
     ];
 
     protected array $test_tools = [
-        EchoTool::class,
-        ListCommandsTool::class,
+
     ];
 
     public function register(): void
@@ -42,38 +28,13 @@ class SuperconductorServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->publishConfigs();
-        $this->registerRpcControllers();
-        $this->registerServices();
-        $this->registerMcpControllers();
+        ModelContextProtocol::boot();
+
     }
 
     protected function registerServices(): void
     {
-        ModelContext::boot();
-        MCPServer::boot();
-        MCPServerNavigator::boot();
 
-        TransportProtocolManager::boot();
-        StatefulSessionManager::boot();
-    }
-
-    protected function registerMcpControllers(): void
-    {
-        $test_tools = config('mcp.capabilities.server.tools.test_tools', false);
-        if($test_tools) {
-            foreach ($this->test_tools as $tool) {
-                McpRouter::addCapability(new $tool, 'tools');
-            }
-        }
-
-        // @todo - register other capabilities here
-    }
-
-    protected function registerRpcControllers(): void
-    {
-        foreach ($this->rpc_controllers as $controller) {
-            RPCRouter::addMethod(new $controller);
-        }
     }
 
     protected function publishConfigs() : void

@@ -1,22 +1,21 @@
 <?php
 
-namespace Superconductor\Support\Facades;
+namespace  MCP\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
-use Superconductor\MCPClient;
-use Superconductor\MCPServer;
-use Superconductor\Messages\RequestMessage;
+use MCP\Capabilities\CapabilityExecution\CapabilityRequest;
+use MCP\Capabilities\CapabilityExecution\CapabilityResult;
+use MCP\ModelContextProtocol;
 
 /**
- * @method static client()
- * @method static host()
- * @method static serve(string $transport_protocol, string|int $session_id, \Illuminate\Foundation\Auth\User|null $user = null)
- * @method static protocol(string $transport_protocol)
- * @method static method(RequestMessage $message)
+ * @method static ModelContextProtocol addCapability(string $capability, string $protocol, ?bool $is_experimental = false)
+ * @method static CapabilityResult action(string $protocol, string $capability, string $action, CapabilityRequest $request, bool $is_experimental = false)
+ * @method static array capabilities(string $protocol)
+ * @method static array capability_routes(string $protocol, string $capability_group, ?string $subgroup = null)
  *
- * @see \Superconductor\ModelContext
+ * @see ModelContextProtocol
  */
-class Mcp extends Facade
+class MCP extends Facade
 {
     /**
      * Get the registered name of the component.

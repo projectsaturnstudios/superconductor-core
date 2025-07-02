@@ -2,7 +2,7 @@
     "name": "projectsaturnstudios/superconductor-core",
     "description": "A Laravel package for implementing the Machine Control Protocol (MCP) v20241105",
     "type": "library",
-    "version": "20241105.0.1",
+    "version": "20241105.1.0",
     "license": "MIT",
     "authors": [
         {
@@ -13,15 +13,18 @@
     "require": {
         "php": "^8.2",
         "ext-json": "*",
+        "react/promise": "^3.2",
         "spatie/laravel-data": "^4.11",
         "lorisleiva/laravel-actions": "^2.6",
         "projectsaturnstudios/json-rpc": "^0.0.2",
-        "projectsaturnstudios/pocketflow-php": "^0.1.0"
+        "projectsaturnstudios/quickuuid": "^0.2.0",
+        "projectsaturnstudios/pocketflow-php": "^0.1.1",
+        "projectsaturnstudios/laravel-feature-creep": "^0.1.0"
     },
     "require-dev": {},
     "autoload":{
         "psr-4": {
-            "Superconductor\\": "src/"
+            "MCP\\": "src/"
         },
         "files": [
             "src/Helpers/functions.php"
@@ -34,8 +37,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Superconductor\\Providers\\SuperconductorServiceProvider"
-            ]
+                "MCP\\Providers\\SuperconductorServiceProvider"
+            ],
+            "aliases": {
+                "MCP": "MCP\\Support\\Facades\\MCP"
+            }
         }
     }
 }
