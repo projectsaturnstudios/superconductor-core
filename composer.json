@@ -2,7 +2,7 @@
     "name": "projectsaturnstudios/superconductor-core",
     "description": "A Laravel package for implementing the Machine Control Protocol (MCP) v20241105",
     "type": "library",
-    "version": "20241105.1.1",
+    "version": "20241105.1.2",
     "license": "MIT",
     "authors": [
         {
@@ -16,7 +16,7 @@
         "react/promise": "^3.2",
         "spatie/laravel-data": "^4.11",
         "lorisleiva/laravel-actions": "^2.6",
-        "projectsaturnstudios/json-rpc": "^0.0.2",
+        "projectsaturnstudios/json-rpc": "^0.0.5",
         "projectsaturnstudios/quickuuid": "^0.2.0",
         "projectsaturnstudios/pocketflow-php": "^0.1.1",
         "projectsaturnstudios/laravel-feature-creep": "^0.1.0"

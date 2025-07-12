@@ -3,6 +3,9 @@
 namespace  MCP\Support\Facades;
 
 use Illuminate\Support\Facades\Facade;
+use JSONRPC\RPCNotification;
+use JSONRPC\RPCRequest;
+use JSONRPC\RPCResponse;
 use MCP\Capabilities\CapabilityExecution\CapabilityRequest;
 use MCP\Capabilities\CapabilityExecution\CapabilityResult;
 use MCP\ModelContextProtocol;
@@ -12,6 +15,7 @@ use MCP\ModelContextProtocol;
  * @method static CapabilityResult action(string $protocol, string $capability, string $action, CapabilityRequest $request, bool $is_experimental = false)
  * @method static array capabilities(string $protocol)
  * @method static array capability_routes(string $protocol, string $capability_group, ?string $subgroup = null)
+ * @method static RPCRequest|RPCNotification|RPCResponse|false buildMessage(array $message)
  *
  * @see ModelContextProtocol
  */

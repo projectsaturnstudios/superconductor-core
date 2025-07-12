@@ -11,6 +11,10 @@ return [
             '2024-11-05',
         ]
     ],
+    'server_info' => [
+        'name' => 'Superconductor',
+        'version' => '1.0.0',
+    ],
     'capabilities' => [
         'server' => [
             'experimental' => [
