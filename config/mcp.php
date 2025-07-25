@@ -15,6 +15,10 @@ return [
         'name' => 'Superconductor',
         'version' => '1.0.0',
     ],
+    'client_info' => [
+        'name' => 'Superconductor',
+        'version' => '1.0.0',
+    ],
     'capabilities' => [
         'server' => [
             'experimental' => [
@@ -28,5 +32,6 @@ return [
                 'capabilities' => []
             ]
         ],
-    ]
+    ],
+
 ];

@@ -10,16 +10,26 @@ use JSONRPC\RPCNotification;
 use JSONRPC\RPCRequest;
 use JSONRPC\RPCResponse;
 use JSONRPC\Support\Facades\RPCRouter;
+use MCP\Actions\Clients\MCPServerConnector;
 use MCP\Capabilities\CapabilityExecution\CapabilityRequest;
 use MCP\Capabilities\CapabilityExecution\CapabilityResult;
 use MCP\Capabilities\CapabilityRegistrar;
 use MCP\Capabilities\RequestRouting\CapabilityRegistrationService;
+use MCP\Sessions\ClientSession;
 
 class ModelContextProtocol
 {
     public function __construct(
         protected CapabilityRegistrar $capability_registrar
     ) {}
+
+    public function connect(string $mcp_server, ?string $session_id = null): ClientSession
+    {
+        $results = (new ClientSession($session_id))
+            ->setServer(config("mcp-servers.{$mcp_server}"));
+
+        return (new MCPServerConnector)->handle($results);
+    }
 
     public function capabilities(string $protocol): array
     {

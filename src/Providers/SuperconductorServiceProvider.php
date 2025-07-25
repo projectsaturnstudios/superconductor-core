@@ -3,6 +3,8 @@
 namespace MCP\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use MCP\Console\Commands\MCPInspector\RunMCPInspectorCommand;
+use MCP\Managers\RemoteServerManager;
 use MCP\ModelContextProtocol;
 
 
@@ -10,6 +12,11 @@ class SuperconductorServiceProvider extends ServiceProvider
 {
     protected array $config = [
         'mcp' => __DIR__ .'/../../config/mcp.php',
+        'mcp-servers' => __DIR__ .'/../../config/mcp-servers.php',
+    ];
+
+    protected array $commands = [
+        RunMCPInspectorCommand::class,
     ];
 
     protected array $rpc_controllers = [
@@ -30,6 +37,8 @@ class SuperconductorServiceProvider extends ServiceProvider
         $this->publishConfigs();
         ModelContextProtocol::boot();
         $this->registerRPCMethods();
+        RemoteServerManager::boot();
+        $this->registerCommands();
 
     }
 
@@ -45,9 +54,9 @@ class SuperconductorServiceProvider extends ServiceProvider
         }*/
     }
 
-    protected function registerServices(): void
+    protected function registerCommands(): void
     {
-
+        $this->commands($this->commands);
     }
 
     protected function publishConfigs() : void
