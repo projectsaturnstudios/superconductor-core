@@ -1,6 +1,6 @@
 <?php
 
-namespace MCP\Capabilities\Support\Attributes;
+namespace Superconductor\Mcp\Support\Attributes\Capabilities;
 
 #[\Attribute(\Attribute::TARGET_CLASS)]
 class AsExperimental
